@@ -1,13 +1,17 @@
 import { useEffect } from 'react';
+import { buildEvent } from '../utils';
 
-const useMountFragment = props => {
+const useMountFragment = ({
+  key,
+  fragmentProps = {}
+}) => {
   useEffect(() => {
-    const render = document.body.addEventListener('fragment.loaded', ({ detail: { name } }) => {
-      window.fragments[name](props);
+    const render = document.body.addEventListener(buildEvent(key), ({ detail: { key } }) => {
+      window.fragments[key](fragmentProps);
     });
 
     return () => {
-      document.body.removeEventListener('fragment.loaded', render);
+      document.body.removeEventListener(buildEvent(key), render);
     };
   }, []);
 };

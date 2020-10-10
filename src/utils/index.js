@@ -1,0 +1,1 @@
+export const buildEvent = (key) => `fragments.${key}.loaded`;

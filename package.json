@@ -1,10 +1,12 @@
 {
-  "name": "react-fragment",
-  "version": "0.0.1",
-  "main": "index.js",
+  "name": "react-ui-fragment",
+  "version": "0.0.6",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "publish:npm": "rm -rf dist && mkdir dist &&  babel src -d dist --copy-files"
+    "prebuild": "rm -rf dist && mkdir dist",
+    "build": "babel src -d dist --copy-files",
+    "prepublish": "yarn build"
   },
   "babel": {
     "presets": [
@@ -12,10 +14,7 @@
       "@babel/preset-react"
     ]
   },
-  "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
-  },
+  "peerDependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.11.6",
     "@babel/core": "^7.11.6",
@@ -23,6 +22,11 @@
     "@babel/preset-react": "^7.10.4"
   },
   "dependencies": {
-    "axios": "^0.20.0"
-  }
+    "axios": "^0.20.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "files": [
+    "dist/**"
+  ]
 }

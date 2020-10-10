@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const registerFragment = ({
-  name,
+  key,
   app,
   props = {},
   getFragmentContainer = () => document.getElementById('root')
 }) => {
   window.fragments = {
     ...(window.fragments || {}),
-    [name]: (injectedProps = {}) => {
+    [key]: (injectedProps = {}) => {
       const element = getFragmentContainer();
 
       ReactDOM.render(React.createElement(app, { ...props, ...injectedProps }), element)

@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
+import { buildEvent } from '../utils';
 
-const Fragment = ({ name, children }) => {
+const Fragment = ({ key, children }) => {
   useEffect(() => {
-    const customEvent = new CustomEvent('fragment.loaded', {
-      detail: { name }
+    const customEvent = new CustomEvent(buildEvent(key), {
+      detail: { key }
     });
 
     document.body.dispatchEvent(customEvent);
-  }, [name]);
+  }, [key]);
 
   return process.env.NODE_ENV === 'development' ? children : null;
 };
