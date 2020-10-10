@@ -8,7 +8,7 @@ A set of hoc and hook utilities to implement Micro Frontend in React.
 $ yarn add react-ui-fragment
 
 # via npm
-$ npm install react-ui-fragment --save
+$ npm install react-ui-fragment
 ```
 
 ## Usage
