@@ -3,11 +3,15 @@ import { buildEvent } from '../utils';
 
 const useMountFragment = ({
   key,
-  fragmentProps = {}
+  fragmentProps = {},
+  onFragmentWillMount = () => {},
+  onFragmentDidMount = () => {}
 }) => {
   useEffect(() => {
-    const render = document.body.addEventListener(buildEvent(key), ({ detail: { key } }) => {
+    const render = document.body.addEventListener(buildEvent(key), () => {
+      onFragmentWillMount();
       window.fragments[key](fragmentProps);
+      onFragmentDidMount();
     });
 
     return () => {

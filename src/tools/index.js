@@ -5,12 +5,12 @@ const registerFragment = ({
   key,
   app,
   props = {},
-  getFragmentContainer = () => document.getElementById('root')
+  getFragmentNode = () => document.body
 }) => {
   window.fragments = {
     ...(window.fragments || {}),
     [key]: (injectedProps = {}) => {
-      const element = getFragmentContainer();
+      const element = getFragmentNode();
 
       ReactDOM.render(React.createElement(app, { ...props, ...injectedProps }), element)
 
