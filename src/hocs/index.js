@@ -1,1 +1,1 @@
-export * from './with-fragment';
+export * from './make-fragment';
