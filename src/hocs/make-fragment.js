@@ -17,7 +17,7 @@ const makeFragment = ({
           getFragmentNode
         })
       }
-    }, [forceMount]);
+    }, [key, forceMount]);
 
     return (
       <Fragment name={key}>
