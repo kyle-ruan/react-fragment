@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Fragment } from '../components';
 import { registerFragment } from '../tools';
 
@@ -7,18 +7,15 @@ const makeFragment = ({
   forceMount = false,
   getFragmentNode = () => document.body
 } = {}) => (Component) => {
-  const FragmentizedComponent = props => {
-    useEffect(() => {
-      if (!forceMount) {
-        registerFragment({
-          key,
-          app: Component,
-          props,
-          getFragmentNode
-        })
-      }
-    }, [key, forceMount]);
+  if (!forceMount) {
+    registerFragment({
+      key,
+      app: Component,
+      getFragmentNode
+    })
+  }
 
+  const FragmentizedComponent = props => {
     return (
       <Fragment name={key}>
         {forceMount ? <Component {...props} /> : <React.Fragment />}

@@ -10,17 +10,17 @@ const useFragment = ({
   onFragmentDidMount = () => {},
   fragmentProps = {}
 }) => {
-  useCreateFragment({
-    uri,
-    html,
-    getFragmentContainer
-  });
-
   useMountFragment({
     key,
     fragmentProps,
     onFragmentWillMount,
     onFragmentDidMount
+  });
+
+  useCreateFragment({
+    uri,
+    html,
+    getFragmentContainer
   });
 };
 

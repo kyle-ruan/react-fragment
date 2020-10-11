@@ -1,4 +1,4 @@
-import { get } from 'lodash/get';
+import get from 'lodash/get';
 import { useEffect } from 'react';
 import { buildEvent } from '../utils';
 
@@ -8,13 +8,14 @@ const useMountFragment = ({
   onFragmentWillMount = () => {},
   onFragmentDidMount = () => {}
 }) => {
-  const mount = get(window, `fragments.${key}`);
-
   useEffect(() => {
-    if (!mount) {
-      return;
-    }
     const render = document.body.addEventListener(buildEvent(key), () => {
+      const mount = get(window, `fragments.${key}`);
+
+      if (!mount) {
+        return;
+      }
+
       onFragmentWillMount();
       mount(fragmentProps);
       onFragmentDidMount();
@@ -23,7 +24,7 @@ const useMountFragment = ({
     return () => {
       document.body.removeEventListener(buildEvent(key), render);
     };
-  }, [!!mount]);
+  }, []);
 };
 
 export { useMountFragment };

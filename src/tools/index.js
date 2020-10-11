@@ -7,16 +7,21 @@ const registerFragment = ({
   props = {},
   getFragmentNode = () => document.body
 }) => {
-  window.fragments = {
-    ...(window.fragments || {}),
-    [key]: (injectedProps = {}) => {
-      const element = getFragmentNode();
-
-      ReactDOM.render(React.createElement(app, { ...props, ...injectedProps }), element)
-
-      return () => ReactDOM.unmountComponentAtNode(element)
-    }
+  if (!window.fragments) {
+    window.fragments = {};
   }
+
+  if (window.fragments[key]) {
+    return;
+  }
+
+  window.fragments[key] = (injectedProps = {}) => {
+    const element = getFragmentNode();
+
+    ReactDOM.render(React.createElement(app, { ...props, ...injectedProps }), element)
+
+    return () => ReactDOM.unmountComponentAtNode(element)
+  };
 }
 
 export { registerFragment };
