@@ -1,1 +1,1 @@
-export const buildEvent = (key) => `fragments.${key}.loaded`;
+export const buildEvent = key => `__fragments.${key}.loaded`;

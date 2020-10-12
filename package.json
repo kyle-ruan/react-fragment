@@ -1,6 +1,6 @@
 {
   "name": "react-ui-fragment",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "dist/index.js",
   "license": "MIT",
   "repository": "https://github.com/kyle-ruan/react-fragment.git",
@@ -10,6 +10,7 @@
     "micro-frontend"
   ],
   "scripts": {
+    "format": "prettier-eslint --write 'src/**/*.js'",
     "prebuild": "rm -rf dist && mkdir dist",
     "build": "babel src -d dist --copy-files",
     "prepublish": "yarn build"
@@ -20,17 +21,23 @@
       "@babel/preset-react"
     ]
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
-    "@babel/preset-react": "^7.10.4"
+    "@babel/preset-react": "^7.10.4",
+    "babel-eslint": "^10.1.0",
+    "prettier-eslint-cli": "^5.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "dependencies": {
     "axios": "^0.20.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "lodash": "^4.17.20"
   },
   "files": [
     "dist/**"

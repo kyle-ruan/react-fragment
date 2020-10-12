@@ -1,9 +1,12 @@
-import axios from 'axios';
-import { useEffect } from 'react';
+import axios from "axios";
+import { useEffect } from "react";
 
 const createFragment = (htmlContent, el) => {
   /* eslint-disable no-useless-escape */
-  const parsedHtml = htmlContent.replace(new RegExp('</script>', 'g'), '</script>');
+  const parsedHtml = htmlContent.replace(
+    new RegExp("</script>", "g"),
+    "</script>"
+  );
   const documentRange = document.createRange();
   documentRange.setStart(el, 0);
 

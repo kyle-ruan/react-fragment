@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
 const registerFragment = ({
   key,
@@ -7,21 +7,24 @@ const registerFragment = ({
   props = {},
   getFragmentNode = () => document.body
 }) => {
-  if (!window.fragments) {
-    window.fragments = {};
+  if (!window.__fragments) {
+    window.__fragments = {};
   }
 
-  if (window.fragments[key]) {
+  if (window.__fragments[key]) {
     return;
   }
 
-  window.fragments[key] = (injectedProps = {}) => {
+  window.__fragments[key] = (injectedProps = {}) => {
     const element = getFragmentNode();
 
-    ReactDOM.render(React.createElement(app, { ...props, ...injectedProps }), element)
+    ReactDOM.render(
+      React.createElement(app, { ...props, ...injectedProps }),
+      element
+    );
 
-    return () => ReactDOM.unmountComponentAtNode(element)
+    return () => ReactDOM.unmountComponentAtNode(element);
   };
-}
+};
 
 export { registerFragment };
