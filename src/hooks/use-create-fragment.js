@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 const createFragment = (htmlContent, el) => {
   /* eslint-disable no-useless-escape */
@@ -13,9 +13,7 @@ const createFragment = (htmlContent, el) => {
   return documentRange.createContextualFragment(parsedHtml);
 };
 
-const useCreateFragment = ({ uri, html }) => {
-  const ref = useRef(null);
-
+const useCreateFragment = ({ uri, html, getFragmentContainer }) => {
   useEffect(() => {
     const getHtml = async () => {
       if (html) {
@@ -29,17 +27,13 @@ const useCreateFragment = ({ uri, html }) => {
 
     const appendHtml = async () => {
       const body = await getHtml();
-      const el = ref.current;
+      const el = getFragmentContainer();
       const fragment = createFragment(body, el);
       el.appendChild(fragment);
     };
 
-    if (ref.current) {
-      appendHtml();
-    }
-  }, [ref.current]);
-
-  return ref;
+    appendHtml();
+  }, []);
 };
 
 export { useCreateFragment };
