@@ -1,4 +1,4 @@
-import { ComponentType } from 'react';
+import { Component, ComponentType } from 'react';
 
 type MakeFragmentOptions = {
   key: string;
@@ -10,8 +10,18 @@ type UseFragmentProps = {
   key: string;
   uri?: string;
   html?: string;
-  fragmentProps: Object;
+  fragmentProps?: Object;
   getFragmentContainer: () => Element | DocumentFragment;
+  onFragmentWillMount: () => any;
+  onFragmentDidMount: () => any;
+}
+
+type UIFragmentProps = {
+  key: string;
+  id: string;
+  uri?: string;
+  html?: string;
+  fragmentProps?: Object;
   onFragmentWillMount: () => any;
   onFragmentDidMount: () => any;
 }
@@ -20,4 +30,8 @@ declare const makeFragment: (options: MakeFragmentOptions) => (component: Compon
 
 declare const useFragment: (props: UseFragmentProps) => any;
 
-export { makeFragment, useFragment };
+declare const UIFragment: (props: UIFragmentProps) => Component<any>;
+
+export { makeFragment, useFragment, UIFragment };
+
+export default UIFragment;

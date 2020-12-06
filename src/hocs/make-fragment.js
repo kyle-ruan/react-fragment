@@ -4,7 +4,7 @@ import { registerFragment } from "../tools";
 
 const makeFragment = ({
   key,
-  forceMount = process.env.NODE_ENV === 'development',
+  forceMount = process.env.NODE_ENV === "development",
   getFragmentNode = () => document.body,
   onFragmentReady = () => {}
 } = {}) => Component => {
